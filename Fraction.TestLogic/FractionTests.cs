@@ -142,7 +142,6 @@ namespace TestLogic
             Assert.IsFalse(fraction.IsEqual(other));
         }
 
-
         [TestMethod()]
         public void ConvertToString_DenominatorNotInitialized_ShouldReturnErrorText()
         {
@@ -185,6 +184,5 @@ namespace TestLogic
             string expected = "3/4";
             Assert.AreEqual(expected, actual);
         }
-
     }
 }

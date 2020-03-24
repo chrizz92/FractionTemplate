@@ -12,7 +12,12 @@ namespace Logic
     /// </summary>
     public class Fraction
     {
-
+        private int _numerator;
+        private int _denominator;
+        private int _ggt;
+        private bool _numeratorIsSet;
+        private bool _denominatorIsSet;
+        private bool _validDenominatorIsSet;
 
         /// <summary>
         /// Zähler belegen
@@ -20,7 +25,8 @@ namespace Logic
         /// <param name="numerator"></param>
         public void SetNumerator(int numerator)
         {
-            throw new NotImplementedException();
+            _numerator = numerator;
+            _numeratorIsSet = true;
         }
 
         /// <summary>
@@ -29,9 +35,12 @@ namespace Logic
         /// <returns>Zähler</returns>
         public int GetNumerator()
         {
-            throw new NotImplementedException();
+            if (_numeratorIsSet && _validDenominatorIsSet)
+            {
+                Shorten();
+            }
+            return _numerator;
         }
-
 
         /// <summary>
         /// Nenner belegen
@@ -39,7 +48,17 @@ namespace Logic
         /// <param name="denominator"></param>
         public void SetDenominator(int denominator)
         {
-            throw new NotImplementedException();
+            _denominator = denominator;
+            _denominatorIsSet = true;
+
+            if (denominator != 0)
+            {
+                _validDenominatorIsSet = true;
+            }
+            else
+            {
+                _validDenominatorIsSet = false;
+            }
         }
 
         /// <summary>
@@ -48,19 +67,29 @@ namespace Logic
         /// <returns>Nenner</returns>
         public int GetDenominator()
         {
-            throw new NotImplementedException();
+            if (_numeratorIsSet && _validDenominatorIsSet)
+            {
+                Shorten();
+            }
+            return _denominator;
         }
-
 
         /// <summary>
         /// Gekürzte Brüche stimmen bei Zähler und Nenner überein
-        /// Ist ein Nenner der beiden Brüche 0 so ist das Ergebnis immer false 
+        /// Ist ein Nenner der beiden Brüche 0 so ist das Ergebnis immer false
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
         public bool IsEqual(Fraction other)
         {
-            throw new NotImplementedException();
+            bool fractionsAreEqual = false;
+
+            if (this._numerator == other.GetNumerator() && this._denominator == other.GetDenominator())
+            {
+                fractionsAreEqual = true;
+            }
+
+            return fractionsAreEqual;
         }
 
         /// <summary>
@@ -69,7 +98,23 @@ namespace Logic
         /// <returns></returns>
         public string ConvertToString()
         {
-            throw new NotImplementedException();
+            string stringToReturn;
+
+            if (_denominatorIsSet && !_validDenominatorIsSet)
+            {
+                stringToReturn = "denominator is set to 0";
+            }
+            else if (!_validDenominatorIsSet)
+            {
+                stringToReturn = "denominator is not initialized";
+            }
+            else
+            {
+                Shorten();
+                stringToReturn = $"{_numerator}/{_denominator}";
+            }
+
+            return stringToReturn;
         }
 
         /// <summary>
@@ -79,21 +124,43 @@ namespace Logic
         /// <returns></returns>
         public bool IsValid()
         {
-            throw new NotImplementedException();
+            bool valueIsValid = true;
+
+            if (!_numeratorIsSet || !_validDenominatorIsSet)
+            {
+                valueIsValid = false;
+            }
+
+            return valueIsValid;
         }
 
         public double GetValue()
         {
-            throw new NotImplementedException();
-        }
+            double valueToReturn;
+            if (_numeratorIsSet && _validDenominatorIsSet)
+            {
+                valueToReturn = _numerator / ((double)_denominator);
+            }
+            else if (!_validDenominatorIsSet)
+            {
+                valueToReturn = Double.MaxValue;
+            }
+            else
+            {
+                valueToReturn = Double.MinValue;
+            }
 
+            return valueToReturn;
+        }
 
         /// <summary>
         /// Bruch so weit es geht kürzen
         /// </summary>
         private void Shorten()
         {
-            throw new NotImplementedException();
+            _ggt = CalculateGgt(_numerator, _denominator);
+            _numerator = _numerator / _ggt;
+            _denominator = _denominator / _ggt;
         }
 
         /// <summary>
@@ -104,7 +171,16 @@ namespace Logic
         /// <returns>ggt(a,b)</returns>
         private static int CalculateGgt(int a, int b)
         {
-            throw new NotImplementedException();
+            int temp;
+
+            do
+            {
+                temp = a % b;
+                a = b;
+                b = temp;
+            } while (temp > 0);
+
+            return a;
         }
     }
 }

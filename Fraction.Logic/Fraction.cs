@@ -15,8 +15,8 @@ namespace Logic
         private int _numerator;
         private int _denominator;
         private int _ggt;
-        private bool _numeratorIsSet;
-        private bool _denominatorIsSet;
+        private bool _isNumeratorSet;
+        private bool _isDenominatorSet;
         private bool _validDenominatorIsSet;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Logic
         public void SetNumerator(int numerator)
         {
             _numerator = numerator;
-            _numeratorIsSet = true;
+            _isNumeratorSet = true;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Logic
         /// <returns>Zähler</returns>
         public int GetNumerator()
         {
-            if (_numeratorIsSet && _validDenominatorIsSet)
+            if (_isNumeratorSet && _validDenominatorIsSet)
             {
                 Shorten();
             }
@@ -49,7 +49,7 @@ namespace Logic
         public void SetDenominator(int denominator)
         {
             _denominator = denominator;
-            _denominatorIsSet = true;
+            _isDenominatorSet = true;
 
             if (denominator != 0)
             {
@@ -67,7 +67,7 @@ namespace Logic
         /// <returns>Nenner</returns>
         public int GetDenominator()
         {
-            if (_numeratorIsSet && _validDenominatorIsSet)
+            if (_isNumeratorSet && _validDenominatorIsSet)
             {
                 Shorten();
             }
@@ -100,7 +100,7 @@ namespace Logic
         {
             string stringToReturn;
 
-            if (_denominatorIsSet && !_validDenominatorIsSet)
+            if (_isDenominatorSet && !_validDenominatorIsSet)
             {
                 stringToReturn = "denominator is set to 0";
             }
@@ -126,7 +126,7 @@ namespace Logic
         {
             bool valueIsValid = true;
 
-            if (!_numeratorIsSet || !_validDenominatorIsSet)
+            if (!_isNumeratorSet || !_validDenominatorIsSet)
             {
                 valueIsValid = false;
             }
@@ -137,7 +137,7 @@ namespace Logic
         public double GetValue()
         {
             double valueToReturn;
-            if (_numeratorIsSet && _validDenominatorIsSet)
+            if (_isNumeratorSet && _validDenominatorIsSet)
             {
                 valueToReturn = _numerator / ((double)_denominator);
             }

@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fraction.Logic", "Fraction.Logic\Fraction.Logic.csproj", "{B0591498-CD7F-4AF8-A870-A29FAC78E396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fraction.Logic", "Fraction.Logic\Fraction.Logic.csproj", "{B0591498-CD7F-4AF8-A870-A29FAC78E396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fraction.TestLogic", "Fraction.TestLogic\Fraction.TestLogic.csproj", "{D2658D62-0403-4205-8C15-F2B3255A33F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fraction.TestLogic", "Fraction.TestLogic\Fraction.TestLogic.csproj", "{D2658D62-0403-4205-8C15-F2B3255A33F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fraction.ConsoleApp", "Fraction.ConsoleApp\Fraction.ConsoleApp.csproj", "{5948EC1A-6606-4F6C-9C11-E2DCBF0C0851}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B0591498-CD7F-4AF8-A870-A29FAC78E396} = {B0591498-CD7F-4AF8-A870-A29FAC78E396}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{D2658D62-0403-4205-8C15-F2B3255A33F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2658D62-0403-4205-8C15-F2B3255A33F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2658D62-0403-4205-8C15-F2B3255A33F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5948EC1A-6606-4F6C-9C11-E2DCBF0C0851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5948EC1A-6606-4F6C-9C11-E2DCBF0C0851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5948EC1A-6606-4F6C-9C11-E2DCBF0C0851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5948EC1A-6606-4F6C-9C11-E2DCBF0C0851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
